@@ -1,7 +1,7 @@
 {
 	"name": "softwrap",
 	"displayName": "softwrap",
-	"description": "toggles softwrap of lines",
+	"description": "Toggles softwrap of lines. Prototype - may not work on windows.",
 	"version": "0.0.1",
     "license": "MIT",
      "repository": {
