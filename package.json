@@ -3,6 +3,11 @@
 	"displayName": "softwrap",
 	"description": "toggles softwrap of lines",
 	"version": "0.0.1",
+    "license": "MIT",
+     "repository": {
+        "type": "git",
+        "url": "https://github.com/jsturtevant/vscode-softwrap"
+    },
 	"publisher": "jsturtevant",
 	"engines": {
 		"vscode": "^0.10.1"
