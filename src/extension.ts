@@ -21,9 +21,9 @@ export function activate(context: vscode.ExtensionContext) {
         // The code you place here will be executed every time your command is executed
         var message = "failed to change";
         
-        var settingsfile =  new settings.SettingsFileLocator(env.EnvironmentDetection);
+        var settingsfile =  new settings.SettingsFile(env.EnvironmentDetection);
         
-        fs.readFile(process.env.HOME + settingsfile.GetPath(), 'utf8', function(err, data) {
+        fs.readFile(settingsfile.GetPath(), 'utf8', function(err, data) {
             if (err) {
                 vscode.window.showInformationMessage('Softwrap unable to modify settings file.');
             }
@@ -50,7 +50,7 @@ export function activate(context: vscode.ExtensionContext) {
             
             data = JSON.stringify(usersettings, null, 4);
             
-            fs.writeFile(process.env.HOME + '/Library/Application Support/Code/User/settings.json',data);
+            fs.writeFile(settingsfile.GetPath(), data);
                
             console.log(data);
             

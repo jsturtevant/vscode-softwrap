@@ -17,14 +17,14 @@ suite("settingsLocator", () => {
     });
     
 	test("if mac then is mac path", () => {
-		var settingslocator = new settings.SettingsFileLocator(() => {return settings.EnvironemtType.Mac;});
+		var settingslocator = new settings.SettingsFile(() => {return settings.EnvironemtType.Mac;});
         SetHome('/Users/user');
             
         assert.equal(settingslocator.GetPath(), "/Users/user/Library/Application Support/Code/User/settings.json")
 	});
     
     test("if windows then is windows path", () => {
-		var settingslocator = new settings.SettingsFileLocator(() => {return settings.EnvironemtType.Windows;});
+		var settingslocator = new settings.SettingsFile(() => {return settings.EnvironemtType.Windows;});
        
         //windows uses the appdata settings not the home
         SetAppData('C:\\Users\\User\\AppData\\Roaming');
@@ -34,7 +34,7 @@ suite("settingsLocator", () => {
 	});
     
      test("if linux then is linux path", () => {
-		var settingslocator = new settings.SettingsFileLocator(() => {return settings.EnvironemtType.Linux;});
+		var settingslocator = new settings.SettingsFile(() => {return settings.EnvironemtType.Linux;});
         SetHome('/var/local');   
         
         assert.equal(settingslocator.GetPath(), "/var/local/.config/Code/User/settings.json")
