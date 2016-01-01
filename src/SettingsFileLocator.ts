@@ -7,6 +7,7 @@ export enum EnvironemtType {
 }
 
 // https://code.visualstudio.com/docs/customization/userandworkspace
+// http://stackoverflow.com/a/26227660/697126 - get user data 
 export class SettingsFileLocator {
     environment :EnvironemtType;
     
@@ -19,14 +20,12 @@ export class SettingsFileLocator {
         
         switch(this.environment){
             case EnvironemtType.Linux:
-                return '/.config/Code/User/settings.json';
+                return process.env.HOME + '/.config/Code/User/settings.json';
             case EnvironemtType.Mac:
-                 return '/Library/Application Support/Code/User/settings.json';
+                 return process.env.HOME + '/Library/Application Support/Code/User/settings.json';
             case EnvironemtType.Windows:
-                return '\Code\User\settings.json'
+                return process.env.APPDATA + '\\Code\\User\\settings.json'
         }
-        
-       
     }
     
 }
