@@ -2,6 +2,8 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import * as fs from 'fs';
+import * as settings from '../src/SettingsFileLocator';
+import * as env from '../src/environmentdetection';
 
 
 // this method is called when your extension is activated
@@ -19,11 +21,14 @@ export function activate(context: vscode.ExtensionContext) {
         // The code you place here will be executed every time your command is executed
         var message = "failed to change";
         
-        fs.readFile(process.env.HOME + '/Library/Application Support/Code/User/settings.json', 'utf8', function(err, data) {
+        var settingsfile =  new settings.SettingsFileLocator(env.EnvironmentDetection);
+        
+        fs.readFile(process.env.HOME + settingsfile.GetPath(), 'utf8', function(err, data) {
             if (err) {
                 vscode.window.showInformationMessage('Softwrap unable to modify settings file.');
             }
-            console.log(data);
+            
+            console.log('before:' + data);
 
             // there is a comment in the settings.json file.  remove it.
             var usersettings = JSON.parse(data.replace(/\/\/.*/,""));
@@ -60,3 +65,4 @@ export function activate(context: vscode.ExtensionContext) {
 // this method is called when your extension is deactivated
 export function deactivate() {
 }
+
