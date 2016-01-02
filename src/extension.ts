@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as settings from '../src/SettingsFileLocator';
 import * as env from '../src/environmentdetection';
+var os = require("os");
 
 
 // this method is called when your extension is activated
@@ -23,36 +24,18 @@ export function activate(context: vscode.ExtensionContext) {
         
         var settingsfile =  new settings.SettingsFile(env.EnvironmentDetection);
         
-        fs.readFile(settingsfile.GetPath(), 'utf8', function(err, data) {
+        fs.readFile(settingsfile.GetPath(), 'utf8', function(err, orignialFile) {
             if (err) {
                 vscode.window.showInformationMessage('Softwrap unable to modify settings file.');
             }
             
-            console.log('before:' + data);
+            console.log('before:' + os.EOL + orignialFile);
 
-            // there is a comment in the settings.json file.  remove it.
-            var usersettings = JSON.parse(data.replace(/\/\/.*/,""));
-
-            if ("editor.wrappingColumn" in usersettings) {
-                var wrappingcolumn = usersettings["editor.wrappingColumn"];
-
-                if (wrappingcolumn > 0) {
-                    usersettings["editor.wrappingColumn"] = 0;
-                    message = "on";
-                }else{
-                    usersettings["editor.wrappingColumn"] = 300;
-                    message = "off";
-                }
-            }else{
-                // the default setting is 300 so if not already set then add it.
-                usersettings["editor.wrappingColumn"] = 0;
-            }
+            var newFile = settingsfile.SetValue("editor.wrappingColumn", orignialFile);
             
-            data = JSON.stringify(usersettings, null, 4);
-            
-            fs.writeFile(settingsfile.GetPath(), data);
+            fs.writeFile(settingsfile.GetPath(), newFile);
                
-            console.log(data);
+            console.log('after:' + os.EOL + newFile);
             
              // Display a message box to the user
              vscode.window.showInformationMessage('Softwrap ' + message);
