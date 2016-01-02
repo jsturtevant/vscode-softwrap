@@ -21,24 +21,36 @@ export function activate(context: vscode.ExtensionContext) {
     var disposable = vscode.commands.registerCommand('extension.softwrap', () => {
         // The code you place here will be executed every time your command is executed
         var message = "failed to change";
-        
-        var settingsfile =  new settings.SettingsFile(env.EnvironmentDetection);
-        
+
+        var settingsfile = new settings.SettingsFile(env.EnvironmentDetection);
+
         fs.readFile(settingsfile.GetPath(), 'utf8', function(err, orignialFile) {
             if (err) {
                 vscode.window.showInformationMessage('Softwrap unable to modify settings file.');
             }
-            
+
             console.log('before:' + os.EOL + orignialFile);
 
             var newFile = settingsfile.SetValue("editor.wrappingColumn", orignialFile);
-            
-            fs.writeFile(settingsfile.GetPath(), newFile);
-               
+
+            fs.writeFile(settingsfile.GetPath(), newFile, function(err) {
+                if (err) {
+                    vscode.window.showInformationMessage('Softwrap unable to modify settings file.');
+                }
+            });
+
             console.log('after:' + os.EOL + newFile);
+
+            var value = vscode.workspace.getConfiguration();
             
-             // Display a message box to the user
-             vscode.window.showInformationMessage('Softwrap ' + message);
+            // Display a message box to the user
+            // !!! it is opposite of value read because it hasn't updated yet. Probably a better way to do this...
+            if (value.get("editor.wrappingColumn") == 0) {
+                vscode.window.showInformationMessage('Softwrap off');
+            }
+            else {
+                vscode.window.showInformationMessage('Softwrap on');
+            }
         });
     });
 
