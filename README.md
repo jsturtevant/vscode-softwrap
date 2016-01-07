@@ -1,15 +1,15 @@
 # Softwrap
-You can find more details about the extension and implemtation at http://www.jamessturtevant.com/posts/Softwrap-a-Visual-Studio-Code-Extension/.   Also see [Important Notes] below.
+You can find more details about the extension and implemtation at http://www.jamessturtevant.com/posts/Softwrap-a-Visual-Studio-Code-Extension/.   Also see [Important Notes](#important-notes) below.
 
 ## Soft wrap in VS Code
 To enable Soft wrap in VS Code you have to open your user settings file ([open command pallet](https://code.visualstudio.com/Docs/editor/codebasics#_command-palette), type 'settings', select 'Open User Settings') and add the following line:
 
-{% highlight json %}
+```json
 {
 // there might be other custom settings you have in this file.
 "editor.wrappingColumn": 0
 }
-{% endhighlight %}  
+```
 
 ## Softwrap Extension
 Manually opening the User Setting file and editing the editor.wrappingColumn value was going to get old quickly. So I did what any programmer would do... automate the process.
