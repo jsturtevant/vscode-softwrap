@@ -4,6 +4,10 @@
 	"description": "Toggles softwrap of lines. ",
 	"version": "1.0.0",
     "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/jsturtevant/vscode-softwrap/issues"
+    },
+    "homepage": "http://www.jamessturtevant.com/posts/Softwrap-a-Visual-Studio-Code-Extension/",
      "repository": {
         "type": "git",
         "url": "https://github.com/jsturtevant/vscode-softwrap"
