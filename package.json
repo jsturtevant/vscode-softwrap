@@ -2,7 +2,7 @@
 	"name": "softwrap",
 	"displayName": "softwrap",
 	"description": "Toggles softwrap of lines. ",
-	"version": "1.0.0",
+	"version": "1.0.1",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/jsturtevant/vscode-softwrap/issues"
