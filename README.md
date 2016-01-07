@@ -1,5 +1,6 @@
 # Softwrap
-You can find more details about the extension and implemtation at http://www.jamessturtevant.com/posts/Softwrap-a-Visual-Studio-Code-Extension/.   Also see [Important Notes](#important-notes) below.
+You can find more details about the extension and implementation
+ at http://www.jamessturtevant.com/posts/Softwrap-a-Visual-Studio-Code-Extension/.   Also see [Important Notes](#important-notes) below.
 
 ## Soft wrap in VS Code
 To enable Soft wrap in VS Code you have to open your user settings file ([open command pallet](https://code.visualstudio.com/Docs/editor/codebasics#_command-palette), type 'settings', select 'Open User Settings') and add the following line:
