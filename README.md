@@ -1,3 +1,5 @@
+> NOTE: This extension is no longer needed or maintained. Visual Studio now supports word wrap.  The defualt short cut is now ```ALT -Z```
+
 # Softwrap
 You can find more details about the extension and implementation
  at http://www.jamessturtevant.com/posts/Softwrap-a-Visual-Studio-Code-Extension/.   Also see [Important Notes](#important-notes) below.
